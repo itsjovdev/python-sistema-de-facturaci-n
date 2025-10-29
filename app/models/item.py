@@ -1,4 +1,4 @@
-from invoice.app.models.product import Product
+from app.models.product import Product
 
 
 class Item:
@@ -25,4 +25,4 @@ class Item:
     
     #método que calcula el total del producto multiplicando la cantidad * precio unitario
     def calculate_amount(self):
-        return self.__quantity * self.product.price
+        return self.quantity * self.product.price

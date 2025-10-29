@@ -5,17 +5,17 @@ class Product:
         self.__price = price
 
     @property
-    def _name(self):
+    def name(self):
         return self.__name
 
-    @_name.setter
-    def _name(self, value):
+    @name.setter
+    def name(self, value):
         self.__name = value
 
     @property
-    def _price(self):
+    def price(self):
         return self.__price
 
-    @_price.setter
-    def _price(self, value):
-        self.__price = value
+    @price.setter
+    def price(self, value):
+        self.price = value

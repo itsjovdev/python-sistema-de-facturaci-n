@@ -1,8 +1,8 @@
 from datetime import datetime
 from typing import List, Optional
 
-from invoice.app.models.item import Item
-from invoice.app.models.customer import Customer
+from app.models.item import Item
+from app.models.customer import Customer
 
 class Invoice:
     
@@ -81,7 +81,7 @@ class Invoice:
         detail = detail + f'Nombre\t$\tCant.\tTotal\n'
         
         for item in self.items:
-            detail = detail + f'{item.product.name}\t{item.product.price:.2f}\t{item.quantity}\t{item.calculate_amount():2.f}\n\n'
+            detail = detail + f'{item.product.name}\t{item.product.price:.2f}\t{item.quantity}\t{item.calculate_amount():.2f}\n'
         
-        detail = detail + f'Total de la factura:  {self.calculate_total():.2f}'
+        detail = detail + f'\nTotal de la factura:  {self.calculate_total():.2f}'
         return detail
