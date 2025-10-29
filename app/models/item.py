@@ -22,6 +22,7 @@ class Item:
     @product.setter
     def product(self, value):
         self.__product = value
-        
+    
+    #método que calcula el total del producto multiplicando la cantidad * precio unitario
     def calculate_amount(self):
         return self.__quantity * self.product.price
