@@ -26,7 +26,6 @@ class Invoice:
         self.__customer = customer
         #lista
         self.__items: List[Item] = []
-        #numero de folio de la factura. solo setter
     
     #Este metodo sirve para obtener el valor del folio_id
     @property
@@ -59,7 +58,7 @@ class Invoice:
         return self
     
     #metodo para sumar el precio total de todos los productos(items) que tiene una factura
-    def calculate_total(self):
+    def calculate_total2(self):
         #creamos la variable total de tipo float, que es donde se almacena el total de los items
         total = 0.00
         #recorremos cada item de la factura y sumamos el valor total de cada uno. 
@@ -70,18 +69,17 @@ class Invoice:
         return total 
     
     #metodo que utiliza una expresion generadora: sum( expresión  for variable in colección )
-    def calculate_total2(self):
-        return sum(item.calculate_amount() for item in self.items)
+    def calculate_total(self)->float:
+        return sum(float(item.calculate_amount()) for item in self.items)
     
     def generate_detail(self):
         detail = f'Factura nº: {self.folio_id} \n'
-        detail = detail + f'Cliente: {self.customer.name} {self.customer.lastname}\t NIF: {self.customer.tax_id}' 
+        detail = detail + f'Cliente: {self.customer.name} {self.customer.lastname}\t NIF: {self.customer.tax_id}\n' 
         detail = detail + f'Descripción: {self.description}\n'
         detail = detail + f'Fecha de emision: {self.date.strftime('%d de %B del año %Y')}\n'
         detail = detail + f'Nombre\t$\tCant.\tTotal\n'
         
         for item in self.items:
-            detail = detail + f'{item.product.name}\t{item.product.price:.2f}\t{item.quantity}\t{item.calculate_amount():.2f}\n'
-        
+            detail = detail + f'{item.product.name}\t{item.product.price:.2f}\t{item.quantity}\t{item.calculate_amount():.2f}\n\n'
         detail = detail + f'\nTotal de la factura:  {self.calculate_total():.2f}'
         return detail
